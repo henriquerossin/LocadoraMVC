@@ -24,7 +24,7 @@
             Telefone = telefone;
         }
 
-        public void setClienteID(int clienteID)
+        public void SetClienteID(int clienteID)
         {
             ClienteID = clienteID;
         }
