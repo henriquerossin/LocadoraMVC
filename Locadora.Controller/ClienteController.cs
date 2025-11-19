@@ -88,7 +88,7 @@ namespace Locadora.Controller
             }
         }
 
-        public Cliente BuscaClientePorEmail(string email) 
+        public Cliente? BuscaClientePorEmail(string email) 
         {
             SqlConnection connection = new(ConnectionDB.GetConnectionString());
 
