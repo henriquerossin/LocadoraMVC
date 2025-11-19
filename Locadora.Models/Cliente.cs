@@ -3,10 +3,20 @@
     public class Cliente
     {
         public readonly static string INSERTCLIENTE = 
-            "INSERT INTO tblClientes VALUES (@Nome, @Email, @Telefone);" +
+            "INSERT INTO tblClientes " +
+            "VALUES (@Nome, @Email, @Telefone); " +
             "SELECT SCOPE_IDENTITY()";
 
-        public readonly static string SELECTALLCLIENTES = "SELECT * FROM tblClientes";
+        public readonly static string SELECTALLCLIENTES = 
+            "SELECT * FROM tblClientes";
+
+        public readonly static string UPDATEFONECLIENTE =
+            "UPDATE tblClientes SET Telefone = @Telefone " +
+            "WHERE ClienteID = @IdCliente";
+
+        public readonly static string SELECTCLIENTEPOREMAIL = 
+            "SELECT * FROM tblClientes " +
+            "WHERE Email = @Email";
 
         public int ClienteID { get; private set; }
         public string Nome { get; private set; }
@@ -27,6 +37,11 @@
         public void SetClienteID(int clienteID)
         {
             ClienteID = clienteID;
+        }
+
+        public void SetTelefone(string telefone)
+        {
+            Telefone = telefone;
         }
 
         public override string? ToString()

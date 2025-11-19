@@ -87,5 +87,76 @@ namespace Locadora.Controller
                 connection.Close();
             }
         }
+
+        public Cliente BuscaClientePorEmail(string email) 
+        {
+            SqlConnection connection = new(ConnectionDB.GetConnectionString());
+
+            connection.Open();
+
+            try
+            {
+                SqlCommand command = new(Cliente.SELECTCLIENTEPOREMAIL, connection);
+
+                command.Parameters.AddWithValue("@Email", email);
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    Cliente cliente = new(
+                        reader["Nome"].ToString()!,
+                        reader["Email"].ToString()!,
+                        reader["Telefone"] != DBNull.Value ? reader["Telefone"].ToString() : null);
+                    cliente.SetClienteID(Convert.ToInt32(reader["ClienteID"]));
+                    return cliente;
+                }
+                return null;
+            }
+            catch (SqlException e)
+            {
+                throw new Exception("Erro ao buscar cliente por email" + e.Message);
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Erro inesperado ao buscar cliente por email" + e.Message);
+            }
+            finally
+            {
+                connection.Close(); 
+            }
+        }
+
+        public void AtualizarTelefoneCliente(string telefone, string email) 
+        {
+            // Se o resultado for null (IsNull), lança a exceção; senão usa o valor retornado
+            var clienteEncontrado = BuscaClientePorEmail(email) ?? throw new Exception();
+
+            clienteEncontrado.SetTelefone(telefone);
+
+            SqlConnection connection = new(ConnectionDB.GetConnectionString());
+
+            connection.Open();
+
+            try
+            {
+                SqlCommand command = new(Cliente.UPDATEFONECLIENTE, connection);
+                command.Parameters.AddWithValue("@Telefone", clienteEncontrado.Telefone);
+                command.Parameters.AddWithValue("@IdCliente", clienteEncontrado.ClienteID);
+                command.ExecuteNonQuery();
+            }
+            catch (SqlException e)
+            {
+                throw new Exception("Erro ao atualizar telefone do cliente: " + e.Message);
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Erro inesperado ao atualizar telefone do cliente: " + e.Message);
+            }
+            finally
+            {
+                connection.Close(); 
+            }
+        }
     }
 }
