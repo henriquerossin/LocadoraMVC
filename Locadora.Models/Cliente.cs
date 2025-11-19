@@ -5,6 +5,9 @@
         public readonly static string INSERTCLIENTE = 
             "INSERT INTO tblClientes VALUES (@Nome, @Email, @Telefone);" +
             "SELECT SCOPE_IDENTITY()";
+
+        public readonly static string SELECTALLCLIENTES = "SELECT * FROM tblClientes";
+
         public int ClienteID { get; private set; }
         public string Nome { get; private set; }
         public string Email { get; private set; }
