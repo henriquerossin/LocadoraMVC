@@ -2,6 +2,12 @@
 {
     public class ConnectionDB
     {
+        private static readonly string _connectionString =
+            "Data Source=localhost;Persist Security Info=True;User ID=sa;Password=SqlServer@2022;Pooling=False;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=True";
 
+        public static string GetConnectionString()
+        {
+            return _connectionString;
+        }
     }
 }
