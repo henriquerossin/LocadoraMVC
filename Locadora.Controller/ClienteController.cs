@@ -58,7 +58,7 @@ namespace Locadora.Controller
                         Cliente cliente = new(
                             reader["Nome"].ToString()!,
                             reader["Email"].ToString()!,
-                            reader["Telefone"] != DBNull.Value ? reader["Telefone"].ToString() : null);
+                            !string.IsNullOrWhiteSpace(reader["Telefone"] as string) ? reader["Telefone"] as string : "Não possui telefone.");
 
                         cliente.SetClienteID(Convert.ToInt32(reader["ClienteID"]));
 
@@ -104,7 +104,8 @@ namespace Locadora.Controller
                         Cliente cliente = new(
                             reader["Nome"].ToString()!,
                             reader["Email"].ToString()!,
-                            reader["Telefone"] != DBNull.Value ? reader["Telefone"].ToString() : null);
+                            !string.IsNullOrWhiteSpace(reader["Telefone"] as string) ? reader["Telefone"] as string : "Não possui telefone.");
+
                         cliente.SetClienteID(Convert.ToInt32(reader["ClienteID"]));
 
                         return cliente;
