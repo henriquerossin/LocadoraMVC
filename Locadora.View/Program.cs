@@ -42,6 +42,7 @@ namespace Locadora.View
             //clienteController.AtualizarTelefoneCliente("99999-9999", "joao.silva@email.com");
 
             // CREATE - DELETE 
+            clienteController.DeletarCliente("p@o.com.pocoyoBrabao6");
 
         }
     }

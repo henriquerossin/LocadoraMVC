@@ -88,7 +88,7 @@ namespace Locadora.Controller
             }
         }
 
-        public Cliente? BuscaClientePorEmail(string email) 
+        public Cliente? BuscarClientePorEmail(string email) 
         {
             SqlConnection connection = new(ConnectionDB.GetConnectionString());
 
@@ -130,7 +130,7 @@ namespace Locadora.Controller
         public void AtualizarTelefoneCliente(string telefone, string email) 
         {
             // Se o resultado for null (IsNull), lança a exceção; senão usa o valor retornado
-            var clienteEncontrado = BuscaClientePorEmail(email) ?? throw new Exception();
+            var clienteEncontrado = BuscarClientePorEmail(email) ?? throw new Exception("Cliente não encontrado");
 
             clienteEncontrado.SetTelefone(telefone);
 
@@ -152,6 +152,36 @@ namespace Locadora.Controller
             catch (Exception e)
             {
                 throw new Exception("Erro inesperado ao atualizar telefone do cliente: " + e.Message);
+            }
+            finally
+            {
+                connection.Close(); 
+            }
+        }
+
+        public void DeletarCliente(string email)
+        {
+            var clienteEncontrado = BuscarClientePorEmail(email) ?? throw new Exception("Cliente não encontrado");
+
+            SqlConnection connection = new(ConnectionDB.GetConnectionString());
+
+            connection.Open();
+
+            try
+            {
+                SqlCommand command = new(Cliente.DELETECLIENTE, connection);
+
+                command.Parameters.AddWithValue("@Email", clienteEncontrado.Email);
+
+                command.ExecuteNonQuery();
+            }
+            catch (SqlException e)
+            {
+                throw new Exception("Erro ao tentar deletar o cliente" + e.Message);
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Erro inesperado ao tentar deletar o cliente" + e.Message);
             }
             finally
             {
