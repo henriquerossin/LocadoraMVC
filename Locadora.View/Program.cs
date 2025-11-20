@@ -10,36 +10,35 @@ namespace Locadora.View
             ClienteController clienteController = new();
 
             // CREATE - CREATE
-            //Cliente cliente = new("Pocoyo suave4", "p@o.com.pocoyosuave4");
-            //Documento documento = new(1, "RG", "11111", new DateOnly(2020, 1, 1), new DateOnly(2030, 1, 1));
+            Cliente cliente = new("Pocoyo suave4Documento34567", "p@o.com.pocoyosuave4Documento34567");
+            Documento documento = new("RG", "66666666777", new DateOnly(2020, 1, 1), new DateOnly(2030, 1, 1));
 
-            //try
-            //{
-            //    clienteController.AdicionarCliente(cliente);
-            //    Console.WriteLine("Cliente adicionado com sucesso.");
-            //}
-            //catch (Exception e)
-            //{
-            //    if (e.Message.Contains("Violation of UNIQUE KEY"))
-            //        Console.WriteLine("Não é possível adicionar um novo cliente com o mesmo email!");
-            //}
-
-            // CREATE - READ Many
             try
             {
-                var listaDeClientes = clienteController.ListarClientes();
-                Console.WriteLine("Lista de clientes");
-                Console.WriteLine();
-                foreach (var c in listaDeClientes)
-                {
-                    Console.WriteLine(c);
-                    Console.WriteLine();
-                }
+                clienteController.AdicionarCliente(cliente, documento);
+                Console.WriteLine("Cliente adicionado com sucesso.");
             }
             catch (Exception e)
             {
-                Console.WriteLine("Houve um problema na View durante a leitura da lista de clientes " + e.Message);
+                Console.WriteLine(e.Message);
             }
+
+            // CREATE - READ Many
+            //try
+            //{
+            //    var listaDeClientes = clienteController.ListarClientes();
+            //    Console.WriteLine("Lista de clientes");
+            //    Console.WriteLine();
+            //    foreach (var c in listaDeClientes)
+            //    {
+            //        Console.WriteLine(c);
+            //        Console.WriteLine();
+            //    }
+            //}
+            //catch (Exception e)
+            //{
+            //    Console.WriteLine(e.Message);
+            //}
 
             // CREATE - READ One
             //try
@@ -48,7 +47,7 @@ namespace Locadora.View
             //}
             //catch (Exception e)
             //{
-            //    Console.WriteLine("Houve um problema na View durante a leitura das informações do cliente " + e.Message);
+            //    Console.WriteLine(e.Message);
             //}
 
             // CREATE - UPDATE
@@ -60,7 +59,7 @@ namespace Locadora.View
             //}
             //catch (Exception e)
             //{
-            //    throw new Exception("Houve um problema na View ao tentar executar um update " + e.Message);
+            //    throw new Exception(e.Message);
             //}
 
             // CREATE - DELETE 
@@ -71,7 +70,7 @@ namespace Locadora.View
             //}
             //catch (Exception e)
             //{
-            //    Console.WriteLine("Houve um problema na View ao tentar deletar o cliente " + e.Message);
+            //    Console.WriteLine(e.Message);
             //}
         }
     }

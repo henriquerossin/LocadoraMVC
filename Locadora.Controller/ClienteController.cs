@@ -6,7 +6,7 @@ namespace Locadora.Controller
 {
     public class ClienteController
     {
-        public void AdicionarCliente(Cliente cliente)
+        public void AdicionarCliente(Cliente cliente, Documento documento)
         {
             using SqlConnection connection = new(ConnectionDB.GetConnectionString());
             connection.Open();
@@ -22,6 +22,12 @@ namespace Locadora.Controller
                     command.Parameters.AddWithValue("@Telefone", cliente.Telefone ?? (object)DBNull.Value);
 
                     cliente.SetClienteID((Convert.ToInt32(command.ExecuteScalar())));
+
+                    DocumentoController documentoController = new();
+
+                    documento.SetClienteID(cliente.ClienteID);
+
+                    documentoController.AdicionarDocumento(documento, connection, transaction);
 
                     transaction.Commit();
                 }

@@ -1,3 +1,10 @@
+
+USE LocadoraBD;
+
+SELECT * FROM tblClientes JOIN tblDocumentos ON tblClientes.ClienteID = tblDocumentos.ClienteID;
+
+/*
+
 -- Criação do Banco de Dados
 IF NOT EXISTS (SELECT name FROM master.dbo.sysdatabases WHERE name = N'LocadoraBD')
 BEGIN
