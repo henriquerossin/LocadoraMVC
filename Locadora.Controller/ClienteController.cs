@@ -66,7 +66,13 @@ namespace Locadora.Controller
                             reader["Email"].ToString()!,
                             !string.IsNullOrWhiteSpace(reader["Telefone"] as string) ? reader["Telefone"] as string : "Não possui telefone.");
 
-                        cliente.SetClienteID(Convert.ToInt32(reader["ClienteID"]));
+                        Documento documento = new(
+                            reader["TipoDocumento"].ToString()!,
+                            reader["Numero"].ToString()!,
+                            DateOnly.FromDateTime(reader.GetDateTime(5)),
+                            DateOnly.FromDateTime(reader.GetDateTime(6)));
+
+                        cliente.SetDocumento(documento);
 
                         clientes.Add(cliente);
                     }

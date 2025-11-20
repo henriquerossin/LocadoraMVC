@@ -10,35 +10,35 @@ namespace Locadora.View
             ClienteController clienteController = new();
 
             // CREATE - CREATE
-            Cliente cliente = new("Tarnished", "EldenRing.com.LiurniaDosLagos");
-            Documento documento = new("RG", "2022", new DateOnly(2020, 1, 1), new DateOnly(2030, 1, 1));
+            //Cliente cliente = new("Tarnished", "EldenRing.com.LiurniaDosLagos");
+            //Documento documento = new("RG", "2022", new DateOnly(2020, 1, 1), new DateOnly(2030, 1, 1));
 
-            try
-            {
-                clienteController.AdicionarCliente(cliente, documento);
-                Console.WriteLine("Cliente adicionado com sucesso.");
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-            }
-
-            // CREATE - READ Many
             //try
             //{
-            //    var listaDeClientes = clienteController.ListarClientes();
-            //    Console.WriteLine("Lista de clientes");
-            //    Console.WriteLine();
-            //    foreach (var c in listaDeClientes)
-            //    {
-            //        Console.WriteLine(c);
-            //        Console.WriteLine();
-            //    }
+            //    clienteController.AdicionarCliente(cliente, documento);
+            //    Console.WriteLine("Cliente adicionado com sucesso.");
             //}
             //catch (Exception e)
             //{
             //    Console.WriteLine(e.Message);
             //}
+
+            // CREATE - READ Many
+            try
+            {
+                var listaDeClientes = clienteController.ListarClientes();
+                Console.WriteLine("Lista de clientes");
+                Console.WriteLine();
+                foreach (var c in listaDeClientes)
+                {
+                    Console.WriteLine(c);
+                    Console.WriteLine();
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
 
             // CREATE - READ One
             //try
