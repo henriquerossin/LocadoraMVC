@@ -1,0 +1,16 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Locadora.Models.Enums
+{
+    internal enum EStatusVeiculo
+    {
+        Disponivel,
+        Alugado,
+        Manutencao,
+        Reservado
+    }
+}

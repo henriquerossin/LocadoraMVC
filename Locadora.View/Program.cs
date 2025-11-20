@@ -62,28 +62,28 @@ namespace Locadora.View
             //     throw new Exception(e.Message);
             // }
 
-            Documento documento = new("CPF", "2022", new DateOnly(2020, 1, 1), new DateOnly(2030, 1, 1));
+            //Documento documento = new("CPF", "2022", new DateOnly(2020, 1, 1), new DateOnly(2030, 1, 1));
 
-            try
-            {
-                clienteController.AtualizarDocumentoCliente("EldenRing.com.LiurniaDosLagos", documento);
-                Console.WriteLine(clienteController.BuscarClientePorEmail("EldenRing.com.LiurniaDosLagos"));
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-            }
+            //try
+            //{
+            //    clienteController.AtualizarDocumentoCliente("EldenRing.com.LiurniaDosLagos", documento);
+            //    Console.WriteLine(clienteController.BuscarClientePorEmail("EldenRing.com.LiurniaDosLagos"));
+            //}
+            //catch (Exception e)
+            //{
+            //    Console.WriteLine(e.Message);
+            //}
 
-            //  CREATE - DELETE 
-            //  try
-            //  {
-            //      clienteController.DeletarCliente("p@o.com.pocoyosuave4Documento34");
-            //      Console.WriteLine("Cliente deletado com sucesso");
-            //  }
-            //  catch (Exception e)
-            //  {
-            //      Console.WriteLine(e.Message);
-            //  }
+            //CREATE - DELETE
+            //try
+            //{
+            //    clienteController.DeletarCliente("p@o.com.pocoyosuave4Documento345");
+            //    Console.WriteLine("Cliente deletado com sucesso");
+            //}
+            //catch (Exception e)
+            //{
+            //    Console.WriteLine(e.Message);
+            //}
         }
     }
 }

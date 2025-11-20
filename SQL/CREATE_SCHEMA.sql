@@ -1,7 +1,15 @@
 
 USE LocadoraBD;
 
-SELECT * FROM tblClientes JOIN tblDocumentos ON tblClientes.ClienteID = tblDocumentos.ClienteID;
+SELECT * FROM tblClientes 
+JOIN tblDocumentos 
+ON tblClientes.ClienteID = tblDocumentos.ClienteID;
+
+SELECT c.Nome, c.Email, c.Telefone, d.TipoDocumento, 
+d.Numero, d.DataEmissao, d.DataValidade 
+FROM tblClientes c 
+JOIN tblDocumentos d 
+ON c.ClienteID = d.ClienteID;
 
 /*
 
