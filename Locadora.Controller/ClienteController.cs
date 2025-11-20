@@ -90,7 +90,7 @@ namespace Locadora.Controller
             }
         }
 
-        public Cliente? BuscarClientePorEmail(string email) 
+        public Cliente? BuscarClientePorEmail(string email)
         {
             using SqlConnection connection = new(ConnectionDB.GetConnectionString());
             connection.Open();
@@ -136,7 +136,7 @@ namespace Locadora.Controller
             }
         }
 
-        public void AtualizarTelefoneCliente(string telefone, string email) 
+        public void AtualizarTelefoneCliente(string telefone, string email)
         {
             var clienteEncontrado = BuscarClientePorEmail(email) ?? throw new Exception("Cliente não encontrado");
 

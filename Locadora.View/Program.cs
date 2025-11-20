@@ -10,8 +10,8 @@ namespace Locadora.View
             ClienteController clienteController = new();
 
             // CREATE - CREATE
-            Cliente cliente = new("Pocoyo suave4Documento34567", "p@o.com.pocoyosuave4Documento34567");
-            Documento documento = new("RG", "66666666777", new DateOnly(2020, 1, 1), new DateOnly(2030, 1, 1));
+            Cliente cliente = new("Tarnished", "EldenRing.com.LiurniaDosLagos");
+            Documento documento = new("RG", "2022", new DateOnly(2020, 1, 1), new DateOnly(2030, 1, 1));
 
             try
             {

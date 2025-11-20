@@ -2,23 +2,23 @@
 {
     public class Cliente
     {
-        public readonly static string INSERTCLIENTE = 
+        public readonly static string INSERTCLIENTE =
             "INSERT INTO tblClientes " +
             "VALUES (@Nome, @Email, @Telefone); " +
             "SELECT SCOPE_IDENTITY()";
 
-        public readonly static string SELECTALLCLIENTES = 
+        public readonly static string SELECTALLCLIENTES =
             "SELECT * FROM tblClientes";
 
         public readonly static string UPDATEFONECLIENTE =
             "UPDATE tblClientes SET Telefone = @Telefone " +
             "WHERE ClienteID = @IdCliente";
 
-        public readonly static string SELECTCLIENTEPOREMAIL = 
+        public readonly static string SELECTCLIENTEPOREMAIL =
             "SELECT * FROM tblClientes " +
             "WHERE Email = @Email";
 
-        public readonly static string DELETECLIENTE = 
+        public readonly static string DELETECLIENTE =
             "DELETE FROM tblClientes " +
             "WHERE Email = @Email";
 
@@ -50,7 +50,7 @@
 
         public override string? ToString()
         {
-            return 
+            return
                 $"Nome: {Nome}" +
                 $"\nEmail: {Email}" +
                 $"\nTelefone: {Telefone}";

@@ -34,7 +34,7 @@ namespace Locadora.Models
 
         public override string? ToString()
         {
-            return 
+            return
                 $"Tipo: {TipoDocumento}" +
                 $"\nNumero: {Numero}" +
                 $"\nData de Emissão: {DataEmissao}" +
