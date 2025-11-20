@@ -8,24 +8,20 @@ namespace Locadora.Controller
     {
         public void AdicionarCliente(Cliente cliente)
         {
-            var connection = new SqlConnection(ConnectionDB.GetConnectionString());
-
+            using SqlConnection connection = new(ConnectionDB.GetConnectionString());
             connection.Open();
 
             using SqlTransaction transaction = connection.BeginTransaction();
             {
                 try
                 {
-                    SqlCommand command = new(Cliente.INSERTCLIENTE, connection, transaction);
+                    using SqlCommand command = new(Cliente.INSERTCLIENTE, connection, transaction);
 
                     command.Parameters.AddWithValue("@Nome", cliente.Nome);
                     command.Parameters.AddWithValue("@Email", cliente.Email);
-                    command.Parameters.AddWithValue("@Telefone", cliente.Telefone ?? /*null*/(object)DBNull.Value);
+                    command.Parameters.AddWithValue("@Telefone", cliente.Telefone ?? (object)DBNull.Value);
 
-                    //cliente.setClienteID((Convert.ToInt32(command.ExecuteScalar()))); --> mesma coisa abaixo:
-                    int clienteId = Convert.ToInt32(command.ExecuteScalar());
-
-                    cliente.SetClienteID(clienteId);
+                    cliente.SetClienteID((Convert.ToInt32(command.ExecuteScalar())));
 
                     transaction.Commit();
                 }
@@ -39,123 +35,131 @@ namespace Locadora.Controller
                     transaction.Rollback();
                     throw new Exception("Erro inesperado ao adicionar cliente: " + e.Message);
                 }
-                finally
-                {
-                    connection.Close();
-                }
             }
         }
 
         public List<Cliente> ListarClientes()
         {
-            SqlConnection connection = new(ConnectionDB.GetConnectionString());
+            using SqlConnection connection = new(ConnectionDB.GetConnectionString());
+            connection.Open();
 
-            try
+            using SqlTransaction transaction = connection.BeginTransaction();
             {
-                connection.Open();
-
-                SqlCommand command = new(Cliente.SELECTALLCLIENTES, connection);
-
-                SqlDataReader reader = command.ExecuteReader();
-
-                List<Cliente> clientes = [];
-
-                while (reader.Read())
+                try
                 {
-                    Cliente cliente = new(
-                        reader["Nome"].ToString()!,
-                        reader["Email"].ToString()!,
-                        // lógica abaixo: "reader["Telefone"] é diferente de Nulo no bd? se sim, converte em string e pega (reader["Telefone"].ToString()), senão, add "null".
-                        reader["Telefone"] != DBNull.Value ? reader["Telefone"].ToString() : null);
+                    using SqlCommand command = new(Cliente.SELECTALLCLIENTES, connection, transaction);
 
-                    cliente.SetClienteID(Convert.ToInt32(reader["ClienteID"]));
+                    using SqlDataReader reader = command.ExecuteReader();
 
-                    clientes.Add(cliente);
+                    List<Cliente> clientes = [];
+
+                    while (reader.Read())
+                    {
+                        Cliente cliente = new(
+                            reader["Nome"].ToString()!,
+                            reader["Email"].ToString()!,
+                            reader["Telefone"] != DBNull.Value ? reader["Telefone"].ToString() : null);
+
+                        cliente.SetClienteID(Convert.ToInt32(reader["ClienteID"]));
+
+                        clientes.Add(cliente);
+                    }
+
+                    reader.Close();
+
+                    transaction.Commit();
+
+                    return clientes;
                 }
-                return clientes;
-            }
-            catch (SqlException e)
-            {
-                throw new Exception("Erro ao listar clientes: " + e.Message);
-            }
-            catch (Exception e)
-            {
-                throw new Exception("Erro inesperado ao listar clientes: " + e.Message);
-            }
-            finally
-            {
-                connection.Close();
+                catch (SqlException e)
+                {
+                    transaction.Rollback();
+                    throw new Exception("Erro ao listar clientes: " + e.Message);
+                }
+                catch (Exception e)
+                {
+                    transaction.Rollback();
+                    throw new Exception("Erro inesperado ao listar clientes: " + e.Message);
+                }
             }
         }
 
         public Cliente? BuscarClientePorEmail(string email) 
         {
-            SqlConnection connection = new(ConnectionDB.GetConnectionString());
-
+            using SqlConnection connection = new(ConnectionDB.GetConnectionString());
             connection.Open();
 
-            try
+            using SqlTransaction transaction = connection.BeginTransaction();
             {
-                SqlCommand command = new(Cliente.SELECTCLIENTEPOREMAIL, connection);
-
-                command.Parameters.AddWithValue("@Email", email);
-
-                SqlDataReader reader = command.ExecuteReader();
-
-                if (reader.Read())
+                try
                 {
-                    Cliente cliente = new(
-                        reader["Nome"].ToString()!,
-                        reader["Email"].ToString()!,
-                        reader["Telefone"] != DBNull.Value ? reader["Telefone"].ToString() : null);
-                    cliente.SetClienteID(Convert.ToInt32(reader["ClienteID"]));
-                    return cliente;
+                    using SqlCommand command = new(Cliente.SELECTCLIENTEPOREMAIL, connection, transaction);
+
+                    command.Parameters.AddWithValue("@Email", email);
+
+                    using SqlDataReader reader = command.ExecuteReader();
+
+                    if (reader.Read())
+                    {
+                        Cliente cliente = new(
+                            reader["Nome"].ToString()!,
+                            reader["Email"].ToString()!,
+                            reader["Telefone"] != DBNull.Value ? reader["Telefone"].ToString() : null);
+                        cliente.SetClienteID(Convert.ToInt32(reader["ClienteID"]));
+
+                        return cliente;
+                    }
+
+                    reader.Close();
+
+                    transaction.Commit();
+
+                    return null;
                 }
-                return null;
-            }
-            catch (SqlException e)
-            {
-                throw new Exception("Erro ao buscar cliente por email" + e.Message);
-            }
-            catch (Exception e)
-            {
-                throw new Exception("Erro inesperado ao buscar cliente por email" + e.Message);
-            }
-            finally
-            {
-                connection.Close(); 
+                catch (SqlException e)
+                {
+                    transaction.Rollback();
+                    throw new Exception("Erro ao buscar cliente por email" + e.Message);
+                }
+                catch (Exception e)
+                {
+                    transaction.Rollback();
+                    throw new Exception("Erro inesperado ao buscar cliente por email" + e.Message);
+                }
             }
         }
 
         public void AtualizarTelefoneCliente(string telefone, string email) 
         {
-            // Se o resultado for null (IsNull), lança a exceção; senão usa o valor retornado
             var clienteEncontrado = BuscarClientePorEmail(email) ?? throw new Exception("Cliente não encontrado");
 
             clienteEncontrado.SetTelefone(telefone);
 
-            SqlConnection connection = new(ConnectionDB.GetConnectionString());
-
+            using SqlConnection connection = new(ConnectionDB.GetConnectionString());
             connection.Open();
 
-            try
+            using SqlTransaction transaction = connection.BeginTransaction();
             {
-                SqlCommand command = new(Cliente.UPDATEFONECLIENTE, connection);
-                command.Parameters.AddWithValue("@Telefone", clienteEncontrado.Telefone);
-                command.Parameters.AddWithValue("@IdCliente", clienteEncontrado.ClienteID);
-                command.ExecuteNonQuery();
-            }
-            catch (SqlException e)
-            {
-                throw new Exception("Erro ao atualizar telefone do cliente: " + e.Message);
-            }
-            catch (Exception e)
-            {
-                throw new Exception("Erro inesperado ao atualizar telefone do cliente: " + e.Message);
-            }
-            finally
-            {
-                connection.Close(); 
+                try
+                {
+                    using SqlCommand command = new(Cliente.UPDATEFONECLIENTE, connection, transaction);
+                    command.Parameters.AddWithValue("@Telefone", clienteEncontrado.Telefone);
+                    command.Parameters.AddWithValue("@IdCliente", clienteEncontrado.ClienteID);
+
+                    command.ExecuteNonQuery();
+
+                    transaction.Commit();
+                }
+                catch (SqlException e)
+                {
+                    transaction.Rollback();
+                    throw new Exception("Erro ao atualizar telefone do cliente: " + e.Message);
+                }
+                catch (Exception e)
+                {
+                    transaction.Rollback();
+                    throw new Exception("Erro inesperado ao atualizar telefone do cliente: " + e.Message);
+                }
             }
         }
 
@@ -163,29 +167,31 @@ namespace Locadora.Controller
         {
             var clienteEncontrado = BuscarClientePorEmail(email) ?? throw new Exception("Cliente não encontrado");
 
-            SqlConnection connection = new(ConnectionDB.GetConnectionString());
-
+            using SqlConnection connection = new(ConnectionDB.GetConnectionString());
             connection.Open();
 
-            try
+            using SqlTransaction transaction = connection.BeginTransaction();
             {
-                SqlCommand command = new(Cliente.DELETECLIENTE, connection);
+                try
+                {
+                    using SqlCommand command = new(Cliente.DELETECLIENTE, connection, transaction);
 
-                command.Parameters.AddWithValue("@Email", clienteEncontrado.Email);
+                    command.Parameters.AddWithValue("@Email", clienteEncontrado.Email);
 
-                command.ExecuteNonQuery();
-            }
-            catch (SqlException e)
-            {
-                throw new Exception("Erro ao tentar deletar o cliente" + e.Message);
-            }
-            catch (Exception e)
-            {
-                throw new Exception("Erro inesperado ao tentar deletar o cliente" + e.Message);
-            }
-            finally
-            {
-                connection.Close(); 
+                    command.ExecuteNonQuery();
+
+                    transaction.Commit();
+                }
+                catch (SqlException e)
+                {
+                    transaction.Rollback();
+                    throw new Exception("Erro ao tentar deletar o cliente" + e.Message);
+                }
+                catch (Exception e)
+                {
+                    transaction.Rollback();
+                    throw new Exception("Erro inesperado ao tentar deletar o cliente" + e.Message);
+                }
             }
         }
     }

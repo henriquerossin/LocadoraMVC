@@ -24,26 +24,42 @@ namespace Locadora.View
             //}
 
             // CREATE - READ
+            try
+            {
+                var listaDeClientes = clienteController.ListarClientes();
+
+                foreach (var c in listaDeClientes)
+                {
+                    Console.WriteLine(c);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Houve um problema na View durante a leitura da lista de clientes " + e.Message);
+            }
+
+            // CREATE - UPDATE
             //try
             //{
-            //    var listaDeClientes = clienteController.ListarClientes();
-
-            //    foreach (var c in listaDeClientes)
-            //    {
-            //        Console.WriteLine(c);
-            //    }
+            //    clienteController.AtualizarTelefoneCliente("12345-1234", "joao.silva@email.com");
+            //    Console.WriteLine(clienteController.BuscarClientePorEmail("joao.silva@email.com"));
+            //    Console.WriteLine("Atualização efetuada com sucesso.");
             //}
             //catch (Exception e)
             //{
-            //    Console.WriteLine(e.Message);
+            //    throw new Exception("Houve um problema na View ao tentar executar um update " + e.Message);
             //}
 
-            // CREATE - UPDATE
-            //clienteController.AtualizarTelefoneCliente("99999-9999", "joao.silva@email.com");
-
             // CREATE - DELETE 
-            clienteController.DeletarCliente("p@o.com.pocoyoBrabao6");
-
+            //try
+            //{
+            //clienteController.DeletarCliente("p@o.com.pocoyoBrabao3");
+            //    Console.WriteLine("Cliente deletado com sucesso");
+            //}
+            //catch (Exception e)
+            //{
+            //    Console.WriteLine("Houve um problema na View ao tentar deletar o cliente " + e.Message); 
+            //} 
         }
     }
 }
