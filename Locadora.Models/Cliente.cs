@@ -2,23 +2,23 @@
 {
     public class Cliente
     {
-        public readonly static string INSERTCLIENTE =
+        public static readonly string INSERTCLIENTE =
             @"INSERT INTO tblClientes " +
             "VALUES (@Nome, @Email, @Telefone); " +
             "SELECT SCOPE_IDENTITY()";
 
-        public readonly static string SELECTALLCLIENTES =
+        public static readonly string SELECTALLCLIENTES =
             @"SELECT c.Nome, c.Email, c.Telefone, d.TipoDocumento, 
             d.Numero, d.DataEmissao, d.DataValidade 
             FROM tblClientes c 
             JOIN tblDocumentos d 
             ON c.ClienteID = d.ClienteID";
 
-        public readonly static string UPDATEFONECLIENTE =
+        public static readonly string UPDATEFONECLIENTE =
             @"UPDATE tblClientes SET Telefone = @Telefone " +
             "WHERE ClienteID = @IdCliente";
 
-        public readonly static string SELECTCLIENTEPOREMAIL =
+        public static readonly string SELECTCLIENTEPOREMAIL =
             @"SELECT c.ClienteID, c.Nome, c.Email, c.Telefone, 
 		    d.TipoDocumento, d.Numero, d.DataEmissao, d.DataValidade 
             FROM tblClientes c 
@@ -26,7 +26,7 @@
             ON c.ClienteID = d.ClienteID 
             WHERE c.Email = @Email";
 
-        public readonly static string DELETECLIENTE =
+        public static readonly string DELETECLIENTE =
             "DELETE FROM tblClientes " +
             "WHERE Email = @Email";
 
