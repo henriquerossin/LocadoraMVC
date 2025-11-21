@@ -86,8 +86,6 @@ namespace Locadora.View
             //    Console.WriteLine(e.Message);
             //}
 
-
-
             //CategoriaController categoriaController = new();
 
             //Categoria categoria = new("Pesado", 250.00m, "Veículo espacial kk");
@@ -100,14 +98,34 @@ namespace Locadora.View
 
             try
             {
-                //Veiculo veiculo = new(1, "XYZ-9876", "Chevrolet", "S10", 2025, EStatusVeiculo.Disponivel.ToString());
-                //veiculoController.AdicionarVeiculo(veiculo);
-                var veiculos = veiculoController.ListarTodosVeiculos();
+                //CRUD CREATE
 
-                foreach (var veiculo in veiculos)
-                {
-                    Console.WriteLine(veiculo);
-                }
+                //Veiculo veiculo = new(1, "XYZ-9876", "Chevrolet", "S10", 2025, EStatusVeiculo.Disponivel.ToString());
+
+                // CRUD READ MANY
+
+                //veiculoController.AdicionarVeiculo(veiculo);
+                //var veiculos = veiculoController.ListarTodosVeiculos();
+
+                //foreach (var veiculo in veiculos)
+                //{
+                //    Console.WriteLine(veiculo);
+                //}
+
+
+                //CRUD READ ONE
+                //var teste = veiculoController.BuscarVeiculoPlaca("XYZ-9876");
+                //Console.WriteLine(teste);
+
+                //CRUD UPDATE
+
+                //Console.WriteLine(veiculoController.BuscarVeiculoPlaca("MNO7890"));
+                //veiculoController.AtualizarStatusVeiculo(EStatusVeiculo.Manutencao.ToString(), "MNO7890");
+                //Console.WriteLine(veiculoController.BuscarVeiculoPlaca("MNO7890"));
+
+                //CRUD DELETE
+
+                //veiculoController.DeletarVeiculo(1002);
             }
             catch (Exception e)
             {

@@ -4,6 +4,8 @@ GO
 
 SELECT * FROM tblVeiculos;
 
+select * from tblCategorias;
+
 /*
 SELECT * FROM tblClientes 
 JOIN tblDocumentos 
