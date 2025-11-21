@@ -2,7 +2,11 @@
 <project version="4">
   <component name="SqlDialectMappings">
     <file url="file://$PROJECT_DIR$/.idea/.idea.Locadora.View/.idea/queries/Query.sql" dialect="TSQL" />
-    <file url="file://$PROJECT_DIR$/Locadora.Models/Cliente.cs" dialect="GenericSQL" />
-    <file url="file://$PROJECT_DIR$/Locadora.Models/Documento.cs" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/.idea/.idea.Locadora.View/.idea/queries/Query_1.sql" dialect="TSQL" />
+    <file url="file://$PROJECT_DIR$/.idea/.idea.Locadora.View/.idea/queries/Query_2.sql" dialect="TSQL" />
+    <file url="file://$PROJECT_DIR$/Locadora.Models/Categoria.cs" dialect="TSQL" />
+    <file url="file://$PROJECT_DIR$/Locadora.Models/Cliente.cs" dialect="TSQL" />
+    <file url="file://$PROJECT_DIR$/Locadora.Models/Documento.cs" dialect="TSQL" />
+    <file url="file://$PROJECT_DIR$/Locadora.Models/Veiculo.cs" dialect="TSQL" />
   </component>
 </project>

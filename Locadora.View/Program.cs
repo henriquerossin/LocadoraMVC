@@ -24,21 +24,21 @@ namespace Locadora.View
             // }
 
             //  CREATE - READ Many
-            //try
-            //{
-            //    var listaDeClientes = clienteController.ListarClientes();
-            //    Console.WriteLine("Lista de clientes");
-            //    Console.WriteLine();
-            //    foreach (var c in listaDeClientes)
-            //    {
-            //        Console.WriteLine(c);
-            //        Console.WriteLine();
-            //    }
-            //}
-            //catch (Exception e)
-            //{
-            //    Console.WriteLine(e.Message);
-            //}
+            try
+            {
+                var listaDeClientes = clienteController.ListarClientes();
+                Console.WriteLine("Lista de clientes");
+                Console.WriteLine();
+                foreach (var c in listaDeClientes)
+                {
+                    Console.WriteLine(c);
+                    Console.WriteLine();
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
 
             //  CREATE - READ One
             //try

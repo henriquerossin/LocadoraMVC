@@ -8,5 +8,6 @@ namespace Locadora.Controller
 {
     public class VeiculoController
     {
+        
     }
 }

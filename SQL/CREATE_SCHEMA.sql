@@ -11,7 +11,12 @@ FROM tblClientes c
 JOIN tblDocumentos d 
 ON c.ClienteID = d.ClienteID;
 
-/*
+
+select * from tblCategorias
+
+INSERT INTO tblCategorias (Nome, Descricao, Diaria)
+            VALUES ('teste1', 'carro zika', 120.20);
+
 
 -- Criação do Banco de Dados
 IF NOT EXISTS (SELECT name FROM master.dbo.sysdatabases WHERE name = N'LocadoraBD')
@@ -22,7 +27,7 @@ GO
 
 USE LocadoraBD;
 GO
-
+/*
 -- 1. Tabela tblClientes (Parte do 1:1 com tblDocumentos e 1:N com tblLocacoes)
 CREATE TABLE tblClientes (
     ClienteID INT PRIMARY KEY IDENTITY(1,1),
@@ -97,6 +102,7 @@ CREATE TABLE tblLocacaoFuncionarios (
     CONSTRAINT FK_LocFunc_Funcionarios FOREIGN KEY (FuncionarioID) REFERENCES tblFuncionarios(FuncionarioID),
     CONSTRAINT UQ_Locacao_Funcionario UNIQUE (LocacaoID, FuncionarioID) -- Garante que um funcionário não seja associado duas vezes à mesma locação
 );
+*/
 
 -- Inserção de Dados Iniciais
 -- Clientes e Documentos (1:1)
