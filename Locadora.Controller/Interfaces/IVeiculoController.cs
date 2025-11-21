@@ -4,9 +4,9 @@ namespace Locadora.Controller.Interfaces
 {
     public interface IVeiculoController
     {
-        public void AdicionarVeiculo();
+        public void AdicionarVeiculo(Veiculo veiculo);
 
-        public void ListarTodosVeiculos();
+        public List<Veiculo> ListarTodosVeiculos();
 
         public Veiculo BuscarVeiculoPlaca(string placa);
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Locadora.Models.Enums
 {
-    internal enum EStatusVeiculo
+    public enum EStatusVeiculo
     {
         Disponivel,
         Alugado,

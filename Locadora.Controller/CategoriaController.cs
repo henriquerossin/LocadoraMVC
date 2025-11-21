@@ -52,5 +52,35 @@ namespace Locadora.Controller
                 throw new Exception("Erro inesperado ao alterar categoria: " + e.Message);
             }
         }
+
+        public string BuscarCategoriaPorId(int id)
+        {
+            SqlConnection connection = new(ConnectionDB.GetConnectionString());
+            connection.Open();
+
+            try
+            {
+                SqlCommand command = new(Categoria.SELECTNOMECATEGORIAPORID, connection);
+                command.Parameters.AddWithValue("@Id", id);
+
+                string nomecategoria = String.Empty;
+
+                SqlDataReader reader = command.ExecuteReader();
+                if (reader.Read())
+                {
+                    nomecategoria = reader["Nome"].ToString() ?? string.Empty;
+                }
+                return nomecategoria;
+            }
+            catch (SqlException e)
+            {
+                throw new Exception("Erro ao buscar categoria por nome: " + e.Message);
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Erro inesperado ao buscar categoria por nome: " + e.Message);
+            }
+        }
+
     }
 }

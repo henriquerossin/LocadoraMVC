@@ -1,5 +1,6 @@
 ﻿using Locadora.Controller;
 using Locadora.Models;
+using Locadora.Models.Enums;
 
 namespace Locadora.View
 {
@@ -85,13 +86,33 @@ namespace Locadora.View
             //    Console.WriteLine(e.Message);
             //}
 
-            CategoriaController categoriaController = new();
 
-            Categoria categoria = new("Pesado", 250.00m, "Veículo espacial kk");
-            categoriaController.AdicionarCategoria(categoria);
-            
-            Categoria categoria2 = new("Levinho", 250.00m, "Veículo espacial kk");
-            categoriaController.AdicionarCategoria(categoria2);
+
+            //CategoriaController categoriaController = new();
+
+            //Categoria categoria = new("Pesado", 250.00m, "Veículo espacial kk");
+            //categoriaController.AdicionarCategoria(categoria);
+
+            //Categoria categoria2 = new("Levinho", 250.00m, "Veículo espacial kk");
+            //categoriaController.AdicionarCategoria(categoria2);
+
+            VeiculoController veiculoController = new();
+
+            try
+            {
+                //Veiculo veiculo = new(1, "XYZ-9876", "Chevrolet", "S10", 2025, EStatusVeiculo.Disponivel.ToString());
+                //veiculoController.AdicionarVeiculo(veiculo);
+                var veiculos = veiculoController.ListarTodosVeiculos();
+
+                foreach (var veiculo in veiculos)
+                {
+                    Console.WriteLine(veiculo);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
         }
     }
 }

@@ -7,7 +7,7 @@ public class Veiculo
         VALUES (@CategoriaID, @Placa, @Marca, @Modelo, @Ano, @StatusVeiculo)";
 
     public static readonly string SELECTALLVEICULOS =
-        @"SELECT VeiculoID, CategoriaID, Placa, Marca, Modelo, Ano, StatusVeiculo 
+        @"SELECT CategoriaID, Placa, Marca, Modelo, Ano, StatusVeiculo 
         FROM tblVeiculos";
 
     public static readonly string SELECTVEICULOBYPLACA =
@@ -26,6 +26,7 @@ public class Veiculo
 
     public int VeiculoID { get; private set; }
     public int CategoriaID { get; private set; }
+    public string? NomeCategoria { get; private set; }
     public string? Placa { get; private set; }
     public string? Marca { get; private set; }
     public string? Modelo { get; private set; }
@@ -58,8 +59,13 @@ public class Veiculo
         StatusVeiculo = statusVeiculo;
     }
 
+    public void SetNomeCategoria(string nomeCategoria)
+    {
+        NomeCategoria = nomeCategoria;
+    }
+
     public override string? ToString()
     {
-        return $"Placa: {Placa}\nMarca: {Marca}\nModelo: {Modelo}\nAno: {Ano}\nStatus {StatusVeiculo}\n";
+        return $"Placa: {Placa}\nMarca: {Marca}\nModelo: {Modelo}\nAno: {Ano}\nStatus {StatusVeiculo}\nCategoria: {NomeCategoria}";
     }
 }
