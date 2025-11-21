@@ -3,8 +3,7 @@
     public class Categoria
     {
         public static readonly string INSERTCATEGORIA =
-            @"INSERT INTO tblCategorias (Nome, Descricao, Diaria) 
-            VALUES (@Nome, @Descricao, @Diaria)";
+            @"EXEC sp_INSERIRCATEGORIA @Nome, @Descricao, @Diaria";
 
         public static readonly string UPDATECATEGORIA =
             @"UPDATE tblCategorias 
@@ -18,11 +17,15 @@
         public string? Descricao { get; private set; }
         public decimal Diaria { get; private set; }
 
-        public Categoria(string? nome, string? descricao, decimal diaria)
+        public Categoria(string nome, decimal diaria)
         {
             Nome = nome;
-            Descricao = descricao;
             Diaria = diaria;
+        }
+
+        public Categoria(string? nome, decimal diaria, string? descricao) : this(nome, diaria)
+        {
+            Descricao = descricao;
         }
 
         public void SetCategoriaID(int categoriaID)

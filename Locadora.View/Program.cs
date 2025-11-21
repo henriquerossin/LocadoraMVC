@@ -7,7 +7,7 @@ namespace Locadora.View
     {
         static void Main()
         {
-            ClienteController clienteController = new(); 
+            ClienteController clienteController = new();
 
             //  CREATE - CREATE
             // Cliente cliente = new("Tarnished", "EldenRing.com.LiurniaDosLagos");
@@ -24,21 +24,21 @@ namespace Locadora.View
             // }
 
             //  CREATE - READ Many
-            try
-            {
-                var listaDeClientes = clienteController.ListarClientes();
-                Console.WriteLine("Lista de clientes");
-                Console.WriteLine();
-                foreach (var c in listaDeClientes)
-                {
-                    Console.WriteLine(c);
-                    Console.WriteLine();
-                }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-            }
+            //try
+            //{
+            //    var listaDeClientes = clienteController.ListarClientes();
+            //    Console.WriteLine("Lista de clientes");
+            //    Console.WriteLine();
+            //    foreach (var c in listaDeClientes)
+            //    {
+            //        Console.WriteLine(c);
+            //        Console.WriteLine();
+            //    }
+            //}
+            //catch (Exception e)
+            //{
+            //    Console.WriteLine(e.Message);
+            //}
 
             //  CREATE - READ One
             //try
@@ -84,6 +84,14 @@ namespace Locadora.View
             //{
             //    Console.WriteLine(e.Message);
             //}
+
+            CategoriaController categoriaController = new();
+
+            Categoria categoria = new("Pesado", 250.00m, "Veículo espacial kk");
+            categoriaController.AdicionarCategoria(categoria);
+            
+            Categoria categoria2 = new("Levinho", 250.00m, "Veículo espacial kk");
+            categoriaController.AdicionarCategoria(categoria2);
         }
     }
 }

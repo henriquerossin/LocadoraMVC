@@ -1,6 +1,10 @@
 
 USE LocadoraBD;
+GO
 
+SELECT * FROM tblCategorias
+
+/*
 SELECT * FROM tblClientes 
 JOIN tblDocumentos 
 ON tblClientes.ClienteID = tblDocumentos.ClienteID;
@@ -10,14 +14,9 @@ d.Numero, d.DataEmissao, d.DataValidade
 FROM tblClientes c 
 JOIN tblDocumentos d 
 ON c.ClienteID = d.ClienteID;
+*/
 
-
-select * from tblCategorias
-
-INSERT INTO tblCategorias (Nome, Descricao, Diaria)
-            VALUES ('teste1', 'carro zika', 120.20);
-
-
+/*
 -- Criação do Banco de Dados
 IF NOT EXISTS (SELECT name FROM master.dbo.sysdatabases WHERE name = N'LocadoraBD')
 BEGIN
@@ -27,6 +26,8 @@ GO
 
 USE LocadoraBD;
 GO
+*/
+
 /*
 -- 1. Tabela tblClientes (Parte do 1:1 com tblDocumentos e 1:N com tblLocacoes)
 CREATE TABLE tblClientes (
@@ -104,6 +105,7 @@ CREATE TABLE tblLocacaoFuncionarios (
 );
 */
 
+/*
 -- Inserção de Dados Iniciais
 -- Clientes e Documentos (1:1)
 INSERT INTO tblClientes (Nome, Email, Telefone) VALUES
@@ -160,3 +162,25 @@ INSERT INTO tblLocacaoFuncionarios (LocacaoID, FuncionarioID) VALUES
 -- Pedro envolvido na Locação 2
 INSERT INTO tblLocacaoFuncionarios (LocacaoID, FuncionarioID) VALUES
 (2, 2);
+*/
+
+/*
+CREATE OR ALTER PROCEDURE sp_INSERIRCATEGORIA
+    @NomeCategoria VARCHAR(50),
+    @DescricaoCategoria VARCHAR(255) NULL,
+    @DiariaCategoria DECIMAL(10,2)
+AS
+BEGIN
+    SET NOCOUNT ON;
+    
+    BEGIN TRY
+        INSERT INTO tblCategorias (Nome, Descricao, Diaria) 
+        VALUES (@NomeCategoria, @DescricaoCategoria, @DiariaCategoria);
+        
+        PRINT 'Categoria adicionada!'
+    END TRY
+    BEGIN CATCH 
+        print 'Um erro aconteceu ao adicionar o cliente: ' + ERROR_MESSAGE()
+    END CATCH
+END
+*/

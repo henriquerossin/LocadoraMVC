@@ -2,11 +2,27 @@ namespace Locadora.Models;
 
 public class Veiculo
 {
+    public static readonly string INSERTVEICULO =
+        @"INSERT INTO tblVeiculos (CategoriaID, Placa, Marca, Modelo, Ano, StatusVeiculo) 
+        VALUES (@CategoriaID, @Placa, @Marca, @Modelo, @Ano, @StatusVeiculo)";
+
     public static readonly string SELECTALLVEICULOS =
-        @"SELECT v.*, c.*
-        FROM tblVeiculos v
-        JOIN tblCategorias c 
-        ON v.CategoriaID = c.CategoriaID";
+        @"SELECT VeiculoID, CategoriaID, Placa, Marca, Modelo, Ano, StatusVeiculo 
+        FROM tblVeiculos";
+
+    public static readonly string SELECTVEICULOBYPLACA =
+        @"SELECT VeiculoID, CategoriaID, Placa, Marca, Modelo, Ano, StatusVeiculo 
+        FROM tblVeiculos
+        WHERE Placa = @Placa";
+
+    public static readonly string UPDATESTATUSVEICULO =
+        @"UPDATE tblVeiculos 
+        SET StatusVeiculo = @StatusVeiculo 
+        WHERE VeiculoID = @IdVeiculo";
+
+    public static readonly string DELETEVEICULO =
+        @"DELETE FROM tblVeiculos 
+        WHERE VeiculoID = @IdVeiculo";
 
     public int VeiculoID { get; private set; }
     public int CategoriaID { get; private set; }

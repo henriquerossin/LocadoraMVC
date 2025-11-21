@@ -1,17 +1,19 @@
 ﻿using Locadora.Models;
 using Microsoft.Data.SqlClient;
+using Utils.Databases;
 
 namespace Locadora.Controller
 {
-    internal class CategoriaController
+    public class CategoriaController
     {
-        public void AdicionarCategoria(Categoria categoria, SqlConnection connection, SqlTransaction transaction)
+        public void AdicionarCategoria(Categoria categoria)
         {
+            using SqlConnection connection = new(ConnectionDB.GetConnectionString());
+            connection.Open();
+
             try
             {
-                using SqlCommand command = new(Categoria.INSERTCATEGORIA, connection, transaction);
-
-                command.Parameters.AddWithValue("@CategoriaID", categoria.CategoriaID);
+                SqlCommand command = new(Categoria.INSERTCATEGORIA, connection);
                 command.Parameters.AddWithValue("@Nome", categoria.Nome);
                 command.Parameters.AddWithValue("@Descricao", categoria.Descricao);
                 command.Parameters.AddWithValue("@Diaria", categoria.Diaria);
