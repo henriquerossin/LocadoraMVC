@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Locadora.Models
+﻿namespace Locadora.Models
 {
-    internal class Categoria
+    public class Categoria
     {
         public static readonly string INSERTCATEGORIA =
-            @"INSERT INTO tblCategorias (Nome, Descricao, Diaria)
+            @"INSERT INTO tblCategorias (Nome, Descricao, Diaria) 
             VALUES (@Nome, @Descricao, @Diaria)";
 
         public static readonly string UPDATECATEGORIA =

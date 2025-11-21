@@ -7,7 +7,7 @@ namespace Locadora.View
     {
         static void Main()
         {
-            ClienteController clienteController = new();
+            ClienteController clienteController = new(); 
 
             //  CREATE - CREATE
             // Cliente cliente = new("Tarnished", "EldenRing.com.LiurniaDosLagos");

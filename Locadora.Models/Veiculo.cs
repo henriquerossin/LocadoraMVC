@@ -2,7 +2,7 @@ namespace Locadora.Models;
 
 public class Veiculo
 {
-    public static readonly string SELECTVEICULOS =
+    public static readonly string SELECTALLVEICULOS =
         @"SELECT v.*, c.*
         FROM tblVeiculos v
         JOIN tblCategorias c 
@@ -15,13 +15,13 @@ public class Veiculo
     public string? Modelo { get; private set; }
     public int Ano { get; private set; }
     public string? StatusVeiculo { get; private set; }
-    
+
     public Veiculo(
-        int categoriaId, 
-        string placa, 
-        string marca, 
-        string modelo, 
-        int ano, 
+        int categoriaId,
+        string placa,
+        string marca,
+        string modelo,
+        int ano,
         string statusVeiculo)
     {
         CategoriaID = categoriaId;

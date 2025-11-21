@@ -3,41 +3,39 @@
     public class Cliente
     {
         public static readonly string INSERTCLIENTE =
-            @"INSERT INTO tblClientes " +
-            "VALUES (@Nome, @Email, @Telefone); " +
-            "SELECT SCOPE_IDENTITY()";
+            @"INSERT INTO tblClientes VALUES (@Nome, @Email, @Telefone);
+            SELECT SCOPE_IDENTITY()";
 
         public static readonly string SELECTALLCLIENTES =
-            @"SELECT c.Nome, c.Email, c.Telefone, d.TipoDocumento, 
-            d.Numero, d.DataEmissao, d.DataValidade 
+            @"SELECT c.Nome, c.Email, c.Telefone, d.TipoDocumento, d.Numero, d.DataEmissao, d.DataValidade 
             FROM tblClientes c 
             JOIN tblDocumentos d 
             ON c.ClienteID = d.ClienteID";
 
         public static readonly string UPDATEFONECLIENTE =
-            @"UPDATE tblClientes SET Telefone = @Telefone " +
-            "WHERE ClienteID = @IdCliente";
+            @"UPDATE tblClientes SET Telefone = @Telefone 
+            WHERE ClienteID = @IdCliente";
 
         public static readonly string SELECTCLIENTEPOREMAIL =
-            @"SELECT c.ClienteID, c.Nome, c.Email, c.Telefone, 
-		    d.TipoDocumento, d.Numero, d.DataEmissao, d.DataValidade 
+            @"SELECT c.ClienteID, c.Nome, c.Email, c.Telefone, d.TipoDocumento, d.Numero, d.DataEmissao, d.DataValidade 
             FROM tblClientes c 
             JOIN tblDocumentos d 
             ON c.ClienteID = d.ClienteID 
             WHERE c.Email = @Email";
 
         public static readonly string DELETECLIENTE =
-            "DELETE FROM tblClientes " +
-            "WHERE Email = @Email";
+            @"DELETE FROM tblClientes 
+            WHERE Email = @Email";
 
         public int ClienteID { get; private set; }
         public string Nome { get; private set; }
         public string Email { get; private set; }
         public string? Telefone { get; private set; } = String.Empty;
-
         public Documento? Documento { get; private set; }
 
-        public Cliente(string nome, string email)
+        public Cliente(
+            string nome, 
+            string email)
         {
             Nome = nome;
             Email = email;
