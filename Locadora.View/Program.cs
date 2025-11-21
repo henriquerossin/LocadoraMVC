@@ -94,38 +94,62 @@ namespace Locadora.View
             //Categoria categoria2 = new("Levinho", 250.00m, "Veículo espacial kk");
             //categoriaController.AdicionarCategoria(categoria2);
 
-            VeiculoController veiculoController = new();
+            //VeiculoController veiculoController = new();
 
+            //try
+            //{
+            //CRUD CREATE
+
+            //Veiculo veiculo = new(1, "XYZ-9876", "Chevrolet", "S10", 2025, EStatusVeiculo.Disponivel.ToString());
+
+            // CRUD READ MANY
+
+            //veiculoController.AdicionarVeiculo(veiculo);
+            //var veiculos = veiculoController.ListarTodosVeiculos();
+
+            //foreach (var veiculo in veiculos)
+            //{
+            //    Console.WriteLine(veiculo);
+            //}
+
+            //CRUD READ ONE
+            //var teste = veiculoController.BuscarVeiculoPlaca("XYZ-9876");
+            //Console.WriteLine(teste);
+
+            //CRUD UPDATE
+
+            //Console.WriteLine(veiculoController.BuscarVeiculoPlaca("MNO7890"));
+            //veiculoController.AtualizarStatusVeiculo(EStatusVeiculo.Manutencao.ToString(), "MNO7890");
+            //Console.WriteLine(veiculoController.BuscarVeiculoPlaca("MNO7890"));
+
+            //CRUD DELETE
+
+            //veiculoController.DeletarVeiculo(1002);
+            //}
+            //catch (Exception e)
+            //{
+            //    Console.WriteLine(e.Message);
+            //}
+
+                LocacaoController locacaoController = new();
             try
             {
                 //CRUD CREATE
 
-                //Veiculo veiculo = new(1, "XYZ-9876", "Chevrolet", "S10", 2025, EStatusVeiculo.Disponivel.ToString());
+                Locacao locacao = new(1, 1, 150.00m, 5);
+
+                locacaoController.AdicionarLocacao(locacao, 1);
+                Console.WriteLine("Locação adicionada com sucesso.");
+                Console.WriteLine(locacao);
 
                 // CRUD READ MANY
 
-                //veiculoController.AdicionarVeiculo(veiculo);
-                //var veiculos = veiculoController.ListarTodosVeiculos();
-
-                //foreach (var veiculo in veiculos)
-                //{
-                //    Console.WriteLine(veiculo);
-                //}
-
-
                 //CRUD READ ONE
-                //var teste = veiculoController.BuscarVeiculoPlaca("XYZ-9876");
-                //Console.WriteLine(teste);
 
                 //CRUD UPDATE
 
-                //Console.WriteLine(veiculoController.BuscarVeiculoPlaca("MNO7890"));
-                //veiculoController.AtualizarStatusVeiculo(EStatusVeiculo.Manutencao.ToString(), "MNO7890");
-                //Console.WriteLine(veiculoController.BuscarVeiculoPlaca("MNO7890"));
 
-                //CRUD DELETE
 
-                //veiculoController.DeletarVeiculo(1002);
             }
             catch (Exception e)
             {
