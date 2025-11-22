@@ -9,7 +9,7 @@ namespace Locadora.Controller
     {
         public void AdicionarFuncionario(Funcionario funcionario)
         {
-            using (SqlConnection connection = new SqlConnection(ConnectionDB.GetConnectionString()))
+            using (SqlConnection connection = new(ConnectionDB.GetConnectionString()))
             {
                 connection.Open();
 
@@ -17,7 +17,7 @@ namespace Locadora.Controller
                 {
                     try
                     {
-                        using (SqlCommand command = new SqlCommand(Funcionario.INSERTFUNCIONARIO, connection, transaction))
+                        using (SqlCommand command = new(Funcionario.INSERTFUNCIONARIO, connection, transaction))
                         {
                             command.Parameters.AddWithValue("@Nome", funcionario.Nome);
                             command.Parameters.AddWithValue("@CPF", funcionario.CPF);
@@ -44,12 +44,12 @@ namespace Locadora.Controller
 
         public Funcionario BuscarFuncionarioPorCPF(string cpf)
         {
-            using (SqlConnection connection = new SqlConnection(ConnectionDB.GetConnectionString()))
+            using (SqlConnection connection = new(ConnectionDB.GetConnectionString()))
             {
                 connection.Open();
                 try
                 {
-                    using (SqlCommand command = new SqlCommand(Funcionario.SELECTFUNCIONARIOPORCPF, connection))
+                    using (SqlCommand command = new(Funcionario.SELECTFUNCIONARIOPORCPF, connection))
                     {
                         command.Parameters.AddWithValue("@CPF", cpf);
 
@@ -57,17 +57,16 @@ namespace Locadora.Controller
                         {
                             if (reader.Read())
                             {
-                                Funcionario funcionario = new Funcionario(
-                                    reader["Nome"].ToString(),
-                                    reader["CPF"].ToString(),
-                                    reader["Email"].ToString(),
+                                Funcionario funcionario = new(
+                                    reader["Nome"].ToString()!,
+                                    reader["CPF"].ToString()!,
+                                    reader["Email"].ToString()!,
                                     reader["Salario"] != DBNull.Value ? (Decimal)reader["Salario"] : null);
 
                                 funcionario.SetFuncionarioID((int)reader["FuncionarioID"]);
                                 return funcionario;
                             }
-
-                            return null;
+                            return null!;
                         }
                     }
                 }
@@ -85,7 +84,7 @@ namespace Locadora.Controller
 
         public List<Funcionario> ListarTodosFuncionarios()
         {
-            using (SqlConnection connection = new SqlConnection(ConnectionDB.GetConnectionString()))
+            using (SqlConnection connection = new(ConnectionDB.GetConnectionString()))
             {
                 connection.Open();
                 try
@@ -98,17 +97,19 @@ namespace Locadora.Controller
                         {
                             while (reader.Read())
                             {
-                                funcionarios.Add(new Funcionario(reader["Nome"].ToString(),
-                                                                 reader["CPF"].ToString(),
-                                                                 reader["Email"].ToString(),
-                                                                 reader["Salario"] != DBNull.Value ?
-                                                                 (Decimal)reader["Salario"] : null));
+                                    Funcionario f = new(
+                                        reader["Nome"].ToString()!,
+                                        reader["CPF"].ToString()!,
+                                        reader["Email"].ToString()!,
+                                        reader["Salario"] != DBNull.Value ? (decimal)reader["Salario"] : null);
 
+                                    f.SetFuncionarioID((int)reader["FuncionarioID"]);
+
+                                funcionarios.Add(f);
                             }
                             return funcionarios;
                         }
                     }
-                    return null;
                 }
                 catch (SqlException ex)
                 {
@@ -126,7 +127,7 @@ namespace Locadora.Controller
         {
             Funcionario funcionario = BuscarFuncionarioPorCPF(cpf) ?? throw new Exception("Funcionário não encontrado.");
 
-            using (SqlConnection connection = new SqlConnection(ConnectionDB.GetConnectionString()))
+            using (SqlConnection connection = new(ConnectionDB.GetConnectionString()))
             {
                 connection.Open();
 

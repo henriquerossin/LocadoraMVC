@@ -2,9 +2,7 @@
 USE LocadoraBD;
 GO
 
-SELECT * FROM tblVeiculos;
-
-select * from tblCategorias;
+SELECT * FROM tblFuncionarios;
 
 /*
 SELECT * FROM tblClientes 

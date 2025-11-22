@@ -8,8 +8,8 @@ namespace Locadora.View
     {
         static void Main()
         {
-            ClienteController clienteController = new();
-
+            #region ClienteCRUD
+            //ClienteController clienteController = new();
             //  CREATE - CREATE
             // Cliente cliente = new("Tarnished", "EldenRing.com.LiurniaDosLagos");
             //Documento documento = new("CPF", "2022", new DateOnly(2020, 1, 1), new DateOnly(2030, 1, 1));
@@ -85,17 +85,10 @@ namespace Locadora.View
             //{
             //    Console.WriteLine(e.Message);
             //}
+            #endregion
 
-            //CategoriaController categoriaController = new();
-
-            //Categoria categoria = new("Pesado", 250.00m, "Veículo espacial kk");
-            //categoriaController.AdicionarCategoria(categoria);
-
-            //Categoria categoria2 = new("Levinho", 250.00m, "Veículo espacial kk");
-            //categoriaController.AdicionarCategoria(categoria2);
-
+            #region VeiculoCRUD
             //VeiculoController veiculoController = new();
-
             //try
             //{
             //CRUD CREATE
@@ -130,31 +123,67 @@ namespace Locadora.View
             //{
             //    Console.WriteLine(e.Message);
             //}
+            #endregion
 
-                LocacaoController locacaoController = new();
-            try
-            {
-                //CRUD CREATE
+            #region FuncionarioCRUD
+            //FuncionarioController funcionarioController = new();
+            //try
+            //{
 
-                Locacao locacao = new(1, 1, 150.00m, 5);
+                // CRUD - Create
+                //Funcionario funcionario = new("João Silva", "12345678900", "joao@email.com", 2500);
+                //funcionarioController.AdicionarFuncionario(funcionario);
 
-                locacaoController.AdicionarLocacao(locacao, 1);
-                Console.WriteLine("Locação adicionada com sucesso.");
-                Console.WriteLine(locacao);
+                // CRUD - READ Many
+                //var funcionarios = funcionarioController.ListarTodosFuncionarios();
+                //foreach (var f in funcionarios)
+                //{
+                //    Console.WriteLine(f);
+                //    Console.WriteLine();
+                //}
 
-                // CRUD READ MANY
+                // CRUD READ - One
+                //var buscado = funcionarioController.BuscarFuncionarioPorCPF("12345678900");
+                //Console.WriteLine(buscado);
+                
+                // CRUD - Update
+                //Console.WriteLine(funcionarioController.BuscarFuncionarioPorCPF("12345678900"));
+                //funcionarioController.AtualizarFuncionarioPorCPF(3000, "12345678900");
+                //Console.WriteLine(funcionarioController.BuscarFuncionarioPorCPF("12345678900"));
 
-                //CRUD READ ONE
+                // CRUD - Delete
+                //funcionarioController.DeletarFuncionarioPorCPF("12345678900");
+            //}
+            //catch (Exception e)
+            //{
+            //    Console.WriteLine(e.Message);
+            //}
+            #endregion
 
-                //CRUD UPDATE
+            #region LocacaoCRUD
+            //LocacaoController locacaoController = new();
+            //try
+            //{
+            //    //CRUD CREATE
 
+            //    Locacao locacao = new(1, 1, 150.00m, 5);
 
+            //    locacaoController.AdicionarLocacao(locacao, 1);
+            //    Console.WriteLine("Locação adicionada com sucesso.");
+            //    Console.WriteLine(locacao);
 
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-            }
+            //    // CRUD READ MANY
+
+            //    //CRUD READ ONE
+
+            //    //CRUD UPDATE
+
+            //}
+            //catch (Exception e)
+            //{
+            //    Console.WriteLine(e.Message);
+            //}
+            #endregion
         }
     }
 }

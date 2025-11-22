@@ -17,9 +17,10 @@ namespace Locadora.Models
             FROM tblFuncionarios
             WHERE CPF = @CPF;";
 
-        public readonly static string SELECTTODOSFUNCIONARIOS = 
-            @"SELECT Nome, CPF,Email,Salario
+        public readonly static string SELECTTODOSFUNCIONARIOS =
+            @"SELECT FuncionarioID, Nome, CPF, Email, Salario
             FROM tblFuncionarios;";
+
 
         public readonly static string UPDATEFUNCIONARIOPORCPF = 
             @"UPDATE tblFuncionarios
