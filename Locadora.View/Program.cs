@@ -1,6 +1,4 @@
 ﻿using Locadora.Controller;
-using Locadora.Models;
-using Locadora.Models.Enums;
 
 namespace Locadora.View
 {
