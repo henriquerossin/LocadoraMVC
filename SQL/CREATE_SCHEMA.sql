@@ -1,8 +1,16 @@
-
 USE LocadoraBD;
 GO
 
 SELECT * FROM tblFuncionarios;
+
+
+SELECT * FROM tblVeiculos;
+
+
+SELECT * FROM tblLocacoes;
+
+SELECT * FROM tblLocacoes WHERE LocacaoID = 1005;
+
 
 /*
 SELECT * FROM tblClientes 

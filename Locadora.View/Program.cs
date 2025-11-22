@@ -130,29 +130,29 @@ namespace Locadora.View
             //try
             //{
 
-                // CRUD - Create
-                //Funcionario funcionario = new("João Silva", "12345678900", "joao@email.com", 2500);
-                //funcionarioController.AdicionarFuncionario(funcionario);
+            // CRUD - Create
+            //Funcionario funcionario = new("João Silva", "12345678900", "joao@email.com", 2500);
+            //funcionarioController.AdicionarFuncionario(funcionario);
 
-                // CRUD - READ Many
-                //var funcionarios = funcionarioController.ListarTodosFuncionarios();
-                //foreach (var f in funcionarios)
-                //{
-                //    Console.WriteLine(f);
-                //    Console.WriteLine();
-                //}
+            // CRUD - READ Many
+            //var funcionarios = funcionarioController.ListarTodosFuncionarios();
+            //foreach (var f in funcionarios)
+            //{
+            //    Console.WriteLine(f);
+            //    Console.WriteLine();
+            //}
 
-                // CRUD READ - One
-                //var buscado = funcionarioController.BuscarFuncionarioPorCPF("12345678900");
-                //Console.WriteLine(buscado);
-                
-                // CRUD - Update
-                //Console.WriteLine(funcionarioController.BuscarFuncionarioPorCPF("12345678900"));
-                //funcionarioController.AtualizarFuncionarioPorCPF(3000, "12345678900");
-                //Console.WriteLine(funcionarioController.BuscarFuncionarioPorCPF("12345678900"));
+            // CRUD READ - One
+            //var buscado = funcionarioController.BuscarFuncionarioPorCPF("12345678900");
+            //Console.WriteLine(buscado);
 
-                // CRUD - Delete
-                //funcionarioController.DeletarFuncionarioPorCPF("12345678900");
+            // CRUD - Update
+            //Console.WriteLine(funcionarioController.BuscarFuncionarioPorCPF("12345678900"));
+            //funcionarioController.AtualizarFuncionarioPorCPF(3000, "12345678900");
+            //Console.WriteLine(funcionarioController.BuscarFuncionarioPorCPF("12345678900"));
+
+            // CRUD - Delete
+            //funcionarioController.DeletarFuncionarioPorCPF("12345678900");
             //}
             //catch (Exception e)
             //{
@@ -161,28 +161,33 @@ namespace Locadora.View
             #endregion
 
             #region LocacaoCRUD
-            //LocacaoController locacaoController = new();
-            //try
-            //{
-            //    //CRUD CREATE
+            LocacaoController locacaoController = new();
+            try
+            {
+                // CRUD - Create
+                //Locacao locacao = new(clienteID: 1, veiculoID: 2, valorDiaria: 150, diasLocacao: 5);
+                //locacaoController.AdicionarLocacao(locacao, funcionarioID: 1);
 
-            //    Locacao locacao = new(1, 1, 150.00m, 5);
+                // CRUD - READ Many
+                //var locacoes = locacaoController.ListarTodasLocacoes();
+                //foreach (var locacao in locacoes)
+                //{
+                //    Console.WriteLine(locacao);
+                //    Console.WriteLine();
+                //}
 
-            //    locacaoController.AdicionarLocacao(locacao, 1);
-            //    Console.WriteLine("Locação adicionada com sucesso.");
-            //    Console.WriteLine(locacao);
+                // CRUD - READ One
+                //Console.WriteLine(locacaoController.BuscarLocacaoPorID(1));
 
-            //    // CRUD READ MANY
-
-            //    //CRUD READ ONE
-
-            //    //CRUD UPDATE
-
-            //}
-            //catch (Exception e)
-            //{
-            //    Console.WriteLine(e.Message);
-            //}
+                // CRUD - Update
+                Console.WriteLine(locacaoController.BuscarLocacaoPorID(1005));
+                locacaoController.FinalizarLocacao(1005, multa: 50);
+                Console.WriteLine(locacaoController.BuscarLocacaoPorID(1005));
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
             #endregion
         }
     }

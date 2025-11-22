@@ -10,6 +10,7 @@ namespace Locadora.Models.Enums
     {
         Ativa,
         Concluida,
+        Finalizada,
         Cancelada
     }
 }

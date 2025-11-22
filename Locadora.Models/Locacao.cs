@@ -4,6 +4,23 @@ namespace Locadora.Models
 {
     public class Locacao
     {
+        public static readonly string UPDATELOCACAOFINALIZACAO = 
+            @"UPDATE tblLocacoes
+            SET DataDevolucaoReal = @data,
+            Multa = @multa,
+            Status = 'Finalizada'
+            WHERE LocacaoID = @id";
+
+        public static readonly string UPDATEVEICULOSFINALIZACAO =
+            @"UPDATE tblVeiculos
+            SET StatusVeiculo = 'Disponivel'
+            WHERE VeiculoID = (SELECT VeiculoID FROM tblLocacoes WHERE LocacaoID = @locacaoID)";
+
+        public static readonly string SETVEICULOINDISPONIVEL =
+            @"UPDATE tblVeiculos 
+            SET StatusVeiculo = 'Alugado' 
+            WHERE VeiculoID = @id";
+
         public static readonly string INSERTLOCACAO =
             @"INSERT INTO tblLocacoes 
             (ClienteID, VeiculoID, DataLocacao, DataDevolucaoPrevista, DataDevolucaoReal, 
@@ -47,6 +64,30 @@ namespace Locadora.Models
             ValorTotal = valorDiaria * diasLocacao;
             DataDevolucaoPrevista = DateTime.Now.AddDays(diasLocacao);
             Status = EStatusLocacao.Ativa;
+        }
+
+        public Locacao(
+            int locacaoID,
+            int clienteID,
+            int veiculoID,
+            DateTime dataLocacao,
+            DateTime dataPrevista,
+            DateTime? dataReal,
+            decimal valorDiaria,
+            decimal valorTotal,
+            decimal? multa,
+            EStatusLocacao status)
+        {
+            LocacaoID = locacaoID;
+            ClienteID = clienteID;
+            VeiculoID = veiculoID;
+            DataLocacao = dataLocacao;
+            DataDevolucaoPrevista = dataPrevista;
+            DataDevolucaoReal = dataReal;
+            ValorDiaria = valorDiaria;
+            ValorTotal = valorTotal;
+            Multa = multa;
+            Status = status;
         }
 
         public void SetLocacaoID(int locacaoID)
