@@ -1,4 +1,5 @@
-﻿using Locadora.Controller.Interfaces;
+﻿using System.Data.Common;
+using Locadora.Controller.Interfaces;
 using Locadora.Models;
 using Microsoft.Data.SqlClient;
 using Utils.Databases;
@@ -51,7 +52,7 @@ namespace Locadora.Controller
             {
                 SqlCommand command = new(Veiculo.UPDATESTATUSVEICULO, connection, transaction);
                 try
-                { 
+                {
                     command.Parameters.AddWithValue("@StatusVeiculo", statusVeiculo);
                     command.Parameters.AddWithValue("@IdVeiculo", veiculo.VeiculoID);
 
@@ -71,7 +72,7 @@ namespace Locadora.Controller
                 }
             }
         }
-        
+
         public Veiculo BuscarVeiculoPlaca(string placa)
         {
             CategoriaController categoriaController = new();
@@ -114,6 +115,52 @@ namespace Locadora.Controller
             }
 
             return veiculo ?? throw new Exception("Veículo não encontrado");
+        }
+
+        public Veiculo BuscarVeiculoPorID(int id)
+        {
+            var categoriaController = new CategoriaController();
+            var connection = new SqlConnection(ConnectionDB.GetConnectionString());
+            connection.Open();
+
+            try
+            {
+                var command = new SqlCommand(Veiculo.SELECTVEICULOID, connection);
+                command.Parameters.AddWithValue("@Id", id);
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    var veiculo = new Veiculo(
+                        reader.GetInt32(1),
+                        reader.GetString(2),
+                        reader.GetString(3),
+                        reader.GetString(4),
+                        reader.GetInt32(5),
+                        reader.GetString(6)
+                    );
+
+                    veiculo.SetVeiculoID(reader.GetInt32(0));
+                    veiculo.SetNomeCategoria(categoriaController.BuscarCategoriaPorId(veiculo.CategoriaID));
+
+                    return veiculo;
+                }
+
+                return null!;
+            }
+            catch (SqlException ex)
+            {
+                throw new Exception("Erro ao buscar veículo " + ex.Message);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Erro inesperado ao buscar veículo " + ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
         }
 
         public void DeletarVeiculo(int idVeiculo)

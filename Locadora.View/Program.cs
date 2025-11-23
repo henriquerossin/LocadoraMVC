@@ -166,16 +166,16 @@ namespace Locadora.View
                 //Locacao locacao = new(clienteID: 1, veiculoID: 2, valorDiaria: 150, diasLocacao: 5);
                 //locacaoController.AdicionarLocacao(locacao, funcionarioID: 1);
 
-                // CRUD - READ Many
-                //var locacoes = locacaoController.ListarTodasLocacoes();
-                //foreach (var locacao in locacoes)
-                //{
-                //    Console.WriteLine(locacao);
-                //    Console.WriteLine();
-                //}
+                //CRUD - READ Many
+               var locacoes = locacaoController.ListarTodasLocacoes();
+                foreach (var locacao in locacoes)
+                {
+                    Console.WriteLine(locacao);
+                    Console.WriteLine();
+                }
 
-                // CRUD - READ One
-                //Console.WriteLine(locacaoController.BuscarLocacaoPorID(1));
+                //CRUD - READ One
+                Console.WriteLine(locacaoController.BuscarLocacaoPorID(1));
 
                 // CRUD - Update
                 Console.WriteLine(locacaoController.BuscarLocacaoPorID(1005));
