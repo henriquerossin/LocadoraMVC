@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="DataSourcePerFileMappings">
-    <file url="file://$PROJECT_DIR$/.idea/.idea.Locadora.View/.idea/queries/Query_2.sql" value="419b032a-c58c-4c2b-9576-044c5cd399be" />
-    <file url="file://$PROJECT_DIR$/Locadora.Models/Cliente.cs" value="419b032a-c58c-4c2b-9576-044c5cd399be" />
-    <file url="file://$PROJECT_DIR$/Locadora.Models/Documento.cs" value="419b032a-c58c-4c2b-9576-044c5cd399be" />
-  </component>
-</project>

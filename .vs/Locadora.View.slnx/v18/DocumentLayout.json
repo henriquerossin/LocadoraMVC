@@ -1,0 +1,45 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Henrique Rossin\\source\\repos\\Locadora.View\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{8D8A87E0-9158-5E3F-784D-725C5F489845}|Locadora.View\\Locadora.View.csproj|c:\\users\\henrique rossin\\source\\repos\\locadora.view\\locadora.view\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8D8A87E0-9158-5E3F-784D-725C5F489845}|Locadora.View\\Locadora.View.csproj|solutionrelative:locadora.view\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 551,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{a80febb4-e7e0-4147-b476-21aaf2453969}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Henrique Rossin\\source\\repos\\Locadora.View\\Locadora.View\\Program.cs",
+              "RelativeDocumentMoniker": "Locadora.View\\Program.cs",
+              "ToolTip": "C:\\Users\\Henrique Rossin\\source\\repos\\Locadora.View\\Locadora.View\\Program.cs",
+              "RelativeToolTip": "Locadora.View\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-21T00:39:43.675Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
